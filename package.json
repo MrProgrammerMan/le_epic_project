@@ -20,7 +20,7 @@
     "@types/node": "^24.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
-  }
+  },
   "bugs": {
     "url": "https://github.com/MrProgrammerMan/le_epic_project/issues"
   },
