@@ -2,9 +2,12 @@
   "name": "oslomet-wiki",
   "version": "1.0.0",
   "description": "A wiki for OsloMet courses, by and for students.",
-  "main": "index.js",
+  "type": "module",
+  "main": "dist/app.js",
   "scripts": {
-    "test": "test"
+    "dev": "ts-node-esm src/app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "repository": {
     "type": "git",
@@ -12,8 +15,8 @@
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MrProgrammerMan/le_epic_project/issues"
-  },
-  "homepage": "https://github.com/MrProgrammerMan/le_epic_project#readme"
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
 }
