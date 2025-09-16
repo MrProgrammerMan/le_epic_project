@@ -6,6 +6,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "ts-node-esm src/app.ts",
+    "test": "node --test --require ts-node/register ./test/**/*.test.ts",
     "build": "tsc",
     "start": "node dist/app.js"
   },
@@ -16,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^24.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   }
