@@ -24,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/MrProgrammerMan/le_epic_project/issues"
   },
-  "homepage": "https://github.com/MrProgrammerMan/le_epic_project#readme"
+  "homepage": "https://github.com/MrProgrammerMan/le_epic_project#readme",
+  "dependencies": {
+    "@fastify/static": "^8.2.0",
+    "fastify": "^5.6.0"
+  }
 }
