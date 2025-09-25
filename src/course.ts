@@ -19,8 +19,14 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
         reply.send("Velkommen til wikisiden til " + kode);
     });
     fastify.get("/course", function (request, reply) {
+        // tester kobling. tenker hjemmeside til hvert fag her.
         reply.send("test");
     });
+    fastify.get("/list", function (request, reply) {
+        // venter på database kobling
+        reply.send("returner liste over kurs");
+    });
+
 }
 
 export default courseRoutes;
