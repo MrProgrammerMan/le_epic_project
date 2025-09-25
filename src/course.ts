@@ -2,14 +2,18 @@ import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
     
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
+    /*
+    Parameter: 
+    - kode: string -> Fagkoden til kurs, feks DATA1200
+    
+    */
     fastify.get("/course/:kode", function (request, reply) {
-        // Kode skal være fagkoden. feks. DATA1200
         const params = request.params as { kode: string }
         let kode = params.kode;
         reply.send(kode);
-    });
+    }); // trenger mer info om database koblingene og hvordan vi skal returnere dataen.
+    // men endpointsene er klare til å bli utviklet videre.
     fastify.get("/course/:kode/wiki", function (request, reply) {
-        // Kode skal være fagkoden. feks. DATA1200
         const params = request.params as { kode: string }
         let kode = params.kode;
         reply.send("Velkommen til wikisiden til " + kode);
