@@ -49,6 +49,8 @@
             shellHook = ''
                 # Install required configuration
                 ${podmanSetupScript}
+
+                trap 'echo "Shutting down containers..."; podman-compose down' EXIT
             '';
         };
     };
