@@ -9,25 +9,27 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     - kode: string -> Fagkoden til kurs, feks DATA1200
     
     */
-    fastify.get("/course/:kode",
+    fastify.get("/course/:fagkode",
         {schema: {
             params: courseGetSchema
-        }
+        },
     },
+    
         function (request, reply) {
-            const parameters = request.params as { kode: string }
-            let kode = parameters.kode;
+            const parameters = request.params as { fagkode: string }
+            let kode = parameters.fagkode;
             reply.send(kode);
     }); 
     
     // trenger mer info om database koblingene og hvordan vi skal returnere dataen.
     // men endpointsene er klare til å bli utviklet videre.
     
-    fastify.get("/course/:kode/wiki", function (request, reply) {
-        const params = request.params as { kode: string }
-        let kode = params.kode;
+    fastify.get("/course/:fagkode/wiki", function (request, reply) {
+        const parameters = request.params as { fagkode: string }
+        let kode = parameters.fagkode;
         reply.send("Velkommen til wikisiden til " + kode);
     });
+
     fastify.get("/course", function (request, reply) {
         // tester kobling. tenker hjemmeside til hvert fag her.
         reply.send("test");
