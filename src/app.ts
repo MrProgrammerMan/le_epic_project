@@ -4,7 +4,7 @@ import Fastify from "fastify";
 import fastifyStatic from "@fastify/static";
 import { fileURLToPath } from "url";
 import { dirname, join } from "path";
-import courseRoutes from './course.ts';
+import courseRoutes from './routes/course.js';
 import { errorHandler } from "./errorHandler.ts";
 
 const __filename = fileURLToPath(import.meta.url);
