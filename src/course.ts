@@ -1,18 +1,28 @@
 import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
-    
+import { courseGetSchema } from "./schema.ts";
+
+
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     /*
     Parameter: 
     - kode: string -> Fagkoden til kurs, feks DATA1200
     
     */
-    fastify.get("/course/:kode", function (request, reply) {
-        const params = request.params as { kode: string }
-        let kode = params.kode;
-        reply.send(kode);
-    }); // trenger mer info om database koblingene og hvordan vi skal returnere dataen.
+    fastify.get("/course/:kode",
+        {schema: {
+            params: courseGetSchema
+        }
+    },
+        function (request, reply) {
+            const parameters = request.params as { kode: string }
+            let kode = parameters.kode;
+            reply.send(kode);
+    }); 
+    
+    // trenger mer info om database koblingene og hvordan vi skal returnere dataen.
     // men endpointsene er klare til å bli utviklet videre.
+    
     fastify.get("/course/:kode/wiki", function (request, reply) {
         const params = request.params as { kode: string }
         let kode = params.kode;
