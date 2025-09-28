@@ -8,7 +8,9 @@
     "dev": "ts-node-esm src/app.ts",
     "test": "node --test --require ts-node/register ./test/**/*.test.ts",
     "build": "tsc",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "introspect-db": "kysely-codegen --out-file ./src/db/types.ts",
+    "migrate": "ts-node-esm src/db/migrate.ts && npm run introspect-db"
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^24.5.0",
+    "@types/pg": "^8.15.5",
+    "kysely-codegen": "^0.19.0",
+    "pg": "^8.16.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
@@ -27,6 +32,8 @@
   "homepage": "https://github.com/MrProgrammerMan/le_epic_project#readme",
   "dependencies": {
     "@fastify/static": "^8.2.0",
-    "fastify": "^5.6.0"
+    "dotenv": "^17.2.2",
+    "fastify": "^5.6.0",
+    "kysely": "^0.28.7"
   }
 }
