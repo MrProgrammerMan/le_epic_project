@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { courseGetSchema } from "../schema.js";
-
+import { courseObj } from "../interface/courseInterface.js";
 
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     /*
