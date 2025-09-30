@@ -1,3 +1,9 @@
+/* 
+MULIG VI ENDRER SYSTEM TIL KYSELY SIN TYPES ISTEDET.
+---------------------------------------------------
+
+*/
+
 interface courseObj {
     /* 
     Klasse for course objekter som følger database tabell strukturen til course.
