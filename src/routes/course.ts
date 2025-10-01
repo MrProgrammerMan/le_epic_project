@@ -2,31 +2,35 @@ import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { courseGetSchema } from "../schema.ts";
 import type { courseObj } from "../interface/courseInterface.ts";
+import { getCourse } from "../dbrepo/courserepo.ts";
 
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     /*
     Parameter: 
-    - kode: string -> Fagkoden til kurs, feks DATA1200
+    - kode: string -> coden til kurs, feks DATA1200
     
     */
-    fastify.get("/course/:fagkode",
+    fastify.get("/course/:code",
         {schema: {
             params: courseGetSchema
         },
     },
     
-        function (request, reply) {
-            const parameters = request.params as { fagkode: string }
-            let kode = parameters.fagkode;
-            reply.send(kode);
+        async function (request, reply) {
+            const parameters = request.params as { code: string }
+            let kode = parameters.code;
+            const data = await getCourse(kode);
+            reply.send(data);
     }); 
     
     // trenger mer info om database koblingene og hvordan vi skal returnere dataen.
     // men endpointsene er klare til å bli utviklet videre.
     
-    fastify.get("/course/:fagkode/wiki", function (request, reply) {
-        const parameters = request.params as { fagkode: string }
-        let kode = parameters.fagkode;
+    fastify.get("/course/:code/wiki", function (request, reply) {
+        const parameters = request.params as { code: string }
+        let kode = parameters.code;
+
+
         reply.send("Velkommen til wikisiden til " + kode);
     });
 
