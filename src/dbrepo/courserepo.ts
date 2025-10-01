@@ -36,3 +36,11 @@ export async function getCourse(code: string){
 
     return courseData;
 }
+
+export async function getAllCourse(){
+    const courseData = await db
+        .selectFrom('course')
+        .selectAll()
+        .execute();
+    return courseData;
+}

@@ -2,7 +2,7 @@ import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { courseGetSchema } from "../schema.ts";
 import type { courseObj } from "../interface/courseInterface.ts";
-import { getCourse } from "../dbrepo/courserepo.ts";
+import { getCourse, getAllCourse } from "../dbrepo/courserepo.ts";
 
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     /*
@@ -38,9 +38,9 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
         // tester kobling. tenker hjemmeside til hvert fag her.
         reply.send("test");
     });
-    fastify.get("/list", function (request, reply) {
-        // venter på database kobling
-        reply.send("returner liste over kurs");
+    fastify.get("/list", async function (request, reply) {
+            const data = await getAllCourse();
+            reply.send(data);
     });
 
 }
