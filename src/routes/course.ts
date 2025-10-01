@@ -44,6 +44,11 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     });
 
     fastify.post("/course", {
+        /* 
+        Legge til ny course til databasen.
+
+        NB! MÅ LEGGE TIL SIKKERHET HER I FREMTIDEN.
+        */
         schema: { body: newCoursePostSchema }
     }, async function (request, reply) {
         const newCourse = request.body;
@@ -51,6 +56,19 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
         reply.send(newCourse);
     });
 
+
+        fastify.put("/course", {
+        /* 
+        Oppdatere eksisterende course i databasen.
+
+        NB! MÅ LEGGE TIL SIKKERHET HER I FREMTIDEN.
+        */
+        schema: { body: newCoursePostSchema }
+    }, async function (request, reply) {
+        const newCourse = request.body;
+        // Legg til logikk for å oppdatere eksisterende kurs i databasen
+        reply.send(newCourse);
+    });
 }
 
 export default courseRoutes;
