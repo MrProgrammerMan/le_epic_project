@@ -21,10 +21,13 @@
           services.postgres."pg1" = {
             enable = true;
             initialScript.before = ''
-              CREATE USER postuser WITH password 'postpass';
+              CREATE USER postuser WITH SUPERUSER PASSWORD 'postpass';
             '';
             initialDatabases = [
-              { name = "db"; }
+              {
+                name = "db";
+                schemas = [ ./scripts/uuidv7.sql ];
+              }
             ];
           };
         };
