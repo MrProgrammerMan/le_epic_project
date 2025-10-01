@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
-import { courseGetSchema } from "../schema.ts";
+import { courseGetSchema, newCoursePostSchema } from "../schema.ts";
 import type { courseObj } from "../interface/courseInterface.ts";
 import { getCourse, getAllCourse } from "../dbrepo/courserepo.ts";
 
@@ -41,6 +41,14 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     fastify.get("/list", async function (request, reply) {
             const data = await getAllCourse();
             reply.send(data);
+    });
+
+    fastify.post("/course", {
+        schema: { body: newCoursePostSchema }
+    }, async function (request, reply) {
+        const newCourse = request.body;
+        // Legg til logikk for å opprette et nytt kurs i databasen
+        reply.send(newCourse);
     });
 
 }
