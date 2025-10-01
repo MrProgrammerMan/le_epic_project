@@ -15,12 +15,14 @@
       imports = [ inputs.process-compose-flake.flakeModule ];
 
       perSystem = { config, pkgs, ... }: {
-        # Define a process-compose environment
         process-compose.default = { config, ... }: {
           imports = [ inputs.services-flake.processComposeModules.default ];
 
           services.postgres."pg1" = {
             enable = true;
+            initialScript.before = ''
+              CREATE USER postuser WITH password 'postpass';
+            '';
             initialDatabases = [
               { name = "db"; }
             ];
