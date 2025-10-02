@@ -1,7 +1,7 @@
 import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { courseGetSchema, newCoursePostSchema } from "../schema.ts";
-import type { courseObj } from "../interface/courseInterface.ts";
+import type { Course } from "../db/types.ts";
 import { getCourse, getAllCourse } from "../dbrepo/courserepo.ts";
 
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
