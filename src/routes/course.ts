@@ -2,7 +2,9 @@ import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { courseGetSchema, newCoursePostSchema } from "../schema.ts";
 import type { Course } from "../db/types.ts";
-import { getCourse, getAllCourse } from "../dbrepo/courserepo.ts";
+import { getCourse, getAllCourse, postCourse, deleteCourse, putCourse } from "../dbrepo/courserepo.ts";
+import { uuidv7 } from "uuidv7";
+
 
 const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
     /*
@@ -52,8 +54,16 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
         schema: { body: newCoursePostSchema }
     }, async function (request, reply) {
         const newCourse = request.body;
+        const courseData : Course = {
+            id: uuidv7(),
+            name: newCourse.name,
+            code: newCourse.code,
+            description: newCourse.description,
+            cover_img: newCourse.cover_img
+        }
+        await postCourse(courseData);
         // Legg til logikk for å opprette et nytt kurs i databasen
-        reply.send(newCourse);
+        reply.send(courseData);
     });
 
 
@@ -66,9 +76,29 @@ const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
         schema: { body: newCoursePostSchema }
     }, async function (request, reply) {
         const newCourse = request.body;
+        const courseData : Course = {
+            name: newCourse.name,
+            code: newCourse.code,
+            description: newCourse.description,
+            cover_img: newCourse.cover_img
+        }
+        await putCourse(courseData);
         // Legg til logikk for å oppdatere eksisterende kurs i databasen
-        reply.send(newCourse);
+        reply.send(courseData);
     });
+        fastify.delete("/course",
+        {schema: {
+            body: courseGetSchema
+        },
+    },
+    
+        async function (request, reply) {
+            const courseDelete = request.body as { code: string }
+            const data = await deleteCourse(courseDelete.code);
+            reply.send(data);
+    }); 
+    
 }
+
 
 export default courseRoutes;
