@@ -10,7 +10,7 @@
     "build": "tsc",
     "start": "node dist/app.js",
     "introspect-db": "kysely-codegen --out-file ./src/db/types.ts",
-    "migrate": "ts-node-esm src/db/migrate.ts && npm run introspect-db"
+    "migrate": "tsx src/db/migrate.ts && npm run introspect-db"
   },
   "repository": {
     "type": "git",
