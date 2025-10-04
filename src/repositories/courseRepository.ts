@@ -8,7 +8,7 @@ export async function findCourseByCode(code: string) {
 }
 
 export async function findAllCourses() {
-    return await db.selectFrom('course')
-        .selectAll()
-        .execute();
+  return await db.selectFrom('course')
+    .selectAll()
+    .execute();
 }
