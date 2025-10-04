@@ -10,7 +10,6 @@ import {
 } from 'kysely';
 import { dirname } from 'path';
 import { fileURLToPath } from "url";
-import 'dotenv/config';
 import { db } from './database.js';
 
 const __filename = fileURLToPath(import.meta.url);
