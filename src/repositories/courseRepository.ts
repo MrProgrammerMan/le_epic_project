@@ -1,5 +1,4 @@
 import { db } from '../db/database.js';
-import { Course } from '../db/types.js';
 
 export async function findCourseByCode(code: string) {
   return await db.selectFrom('course')

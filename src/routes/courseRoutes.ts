@@ -1,8 +1,7 @@
-import Fastify from "fastify";
 import type { FastifyPluginAsync } from "fastify";
 import { findAllCourses, findCourseByCode } from "../repositories/courseRepository.js";
 
-const courseRoutes: FastifyPluginAsync = async (fastify, options) => {
+const courseRoutes: FastifyPluginAsync = async (fastify, _options) => {
     fastify.get("/course/:fagkode", function (request, reply) {
         const parameters = request.params as { fagkode: string }
         const kode = parameters.fagkode;
