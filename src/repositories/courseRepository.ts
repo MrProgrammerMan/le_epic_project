@@ -5,6 +5,12 @@ import { DB } from '../db/types.js';
 type Course = Selectable<DB['course']>;
 type NewCourse = Insertable<DB['course']>;
 
+export async function createCourse(course: NewCourse): Promise<Course | undefined> {
+  return await db.insertInto('course')
+    .values(course)
+    .returningAll()
+    .executeTakeFirst();
+}
 
 export async function findCourseByCode(code: string): Promise<Course | undefined> {
   return await db.selectFrom('course')
