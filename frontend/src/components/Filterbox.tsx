@@ -2,6 +2,20 @@ import React from 'react';
 import { useState } from "react";
 
 
+type EducationLevel= {
+  name: string; years: number[];}
+  
+  const educationLevels: EducationLevel[] = [
+      {name: 'Bachelor', years: [1, 2, 3]},
+      
+      {name: 'Master', years: [1, 2]}
+    ];
+    
+    const getYearsForLevel = (levelName: string): number[] => {
+      const level = educationLevels.find(l => l.name === levelName);
+      return level ? level.years : [];
+    };
+
 const Filterbox: React.FC = () => {
 
     const [isFilterboxOpen, setFilterboxOpen] = useState(false);
@@ -9,6 +23,14 @@ const Filterbox: React.FC = () => {
     const filterboxFunction = () => {
         setFilterboxOpen(!isFilterboxOpen);
     }
+
+    const [selectedLevel, setSelectedLevel] = useState('');
+
+    const handleLevelChange = (level: string) => {
+        setSelectedLevel(selectedLevel === level ? '' : level);
+    };
+
+    
 
   return (
     <div className="p-6">
@@ -44,42 +66,28 @@ const Filterbox: React.FC = () => {
       <div className='mb-4'>
         <label>Education Level</label>
         <div className="flex gap-4">
-          <label className="flex items-center gap-2">
-          <input type="checkbox" name="educationLevel" value="bachelor"/>
-          Bachelor
+        {educationLevels.map((level) => (
+          <label key={level.name}>
+          <input type="checkbox" checked={selectedLevel === level.name} onChange={() => handleLevelChange(level.name)}/>
+          <span className="p-1">{level.name}</span>
           </label>
-          <label className="flex items-center gap-2">
-          <input type="checkbox" name="educationLevel" value="master"/>
-          Master
-          </label>
+        ))}
         </div> 
       </div>
 
+      {selectedLevel && (
       <div className='mb-4'>
         <label className="labelFont flex items-center gap-2">Year</label>
         <div className="flex gap-4 flex-wrap">
-          <label>
-          <input type="checkbox" name="educationYear" value="1"/>
-          <span> 1 </span>
+        {getYearsForLevel(selectedLevel).map((year) => (
+          <label key={year}>
+          <input type="checkbox"/>
+          <span className='p-1 text-sm'>{year}</span>
           </label>
-          <label>
-          <input type="checkbox" name="educationYear" value="2"/>
-          <span> 2 </span>
-          </label>
-          <label>
-          <input type="checkbox" name="educationYear" value="3"/>
-          <span> 3 </span>
-          </label>
-          <label>
-          <input type="checkbox" name="educationYear" value="4"/>
-          <span> 4 </span>
-          </label>
-          <label>
-          <input type="checkbox" name="educationYear" value="5"/>
-          <span> 5 </span>
-          </label>
+        ))}
         </div> 
       </div>
+      )}
 
       <div>
         <label>Semester</label>
