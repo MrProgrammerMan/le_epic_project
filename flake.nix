@@ -37,7 +37,7 @@
             config.process-compose.default.services.outputs.devShell
           ];
           packages = with pkgs; [
-            nodejs
+            nodejs_24
           ];
         };
       };

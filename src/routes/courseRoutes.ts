@@ -1,0 +1,22 @@
+import type { FastifyPluginAsync } from "fastify";
+import { NewCourse, findAllCourses, findCourseByCode, createCourse } from "../repositories/courseRepository.js";
+
+const courseRoutes: FastifyPluginAsync = async (fastify, _options) => {
+    fastify.post<{ Body: NewCourse }>("/courses", async (request, reply) => {
+        const newCourse = request.body;
+        const created = await createCourse(newCourse);
+        return reply.code(201).send(created);
+    });
+
+    fastify.get("/course/:fagkode", async (request, reply) => {
+        const parameters = request.params as { fagkode: string }
+        const kode = parameters.fagkode;
+        reply.send(await findCourseByCode(kode));
+    });
+
+    fastify.get("/courses", async (request, reply) => {
+        reply.send(await findAllCourses());
+    });
+}
+
+export default courseRoutes;
