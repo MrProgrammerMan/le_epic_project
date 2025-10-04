@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from "react";
-
+import { BiFilterAlt } from "@react-icons/all-files/bi/BiFilterAlt";;
 
 type EducationLevel= {
   name: string; years: number[];}
@@ -34,10 +34,10 @@ const Filterbox: React.FC = () => {
 
   return (
     <div className="p-6">
-      <button onClick={filterboxFunction} className="text-lg font-semibold mb-4">Filter</button>
+      <button onClick={filterboxFunction} className="text-lg font-semibold mb-4 flex items-center gap-2">Filter<BiFilterAlt /></button>
 
       {isFilterboxOpen && (
-      <div className="bg-gray-200 p-4">
+      <div className="bg-gray-200 p-6">
       <div className="mb-6">
         <label>Faculty</label>
         <select className='w-full border'>
