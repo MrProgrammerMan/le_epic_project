@@ -3,35 +3,20 @@
  */
 
 import * as path from 'path';
-import { Pool } from 'pg';
 import { promises as fs } from 'fs';
 import {
-  Kysely,
   Migrator,
-  PostgresDialect,
   FileMigrationProvider,
 } from 'kysely';
-import type { DB } from "./types.js";
 import { dirname } from 'path';
 import { fileURLToPath } from "url";
 import 'dotenv/config';
+import { db } from './database.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 async function migrateToLatest() {
-  const db = new Kysely<DB>({
-    dialect: new PostgresDialect({
-      pool: new Pool({
-        host: process.env.DATABASE_HOST,
-        database: process.env.POSTGRES_DB,
-        password: process.env.POSTGRES_PASSWORD,
-        user: process.env.POSTGRES_USER,
-        port: Number(process.env.POSTGRES_PORT)
-      }),
-    }),
-  })
-
   const migrator = new Migrator({
     db,
     provider: new FileMigrationProvider({
