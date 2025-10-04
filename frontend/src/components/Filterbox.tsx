@@ -1,11 +1,21 @@
 import React from 'react';
+import { useState } from "react";
+
 
 const Filterbox: React.FC = () => {
-  
+
+    const [isFilterboxOpen, setFilterboxOpen] = useState(false);
+    
+    const filterboxFunction = () => {
+        setFilterboxOpen(!isFilterboxOpen);
+    }
+
   return (
     <div className="p-6">
-      <h1 className="text-lg font-semibold mb-4">Filter</h1>
-      <div className='p-5'>
+      <button onClick={filterboxFunction} className="text-lg font-semibold mb-4">Filter</button>
+
+      {isFilterboxOpen && (
+      <div className="bg-gray-200 p-4">
       <div className="mb-6">
         <label>Faculty</label>
         <select className='w-full border'>
@@ -85,6 +95,7 @@ const Filterbox: React.FC = () => {
         </div>
       </div>
       </div>
+    )}
     </div>
   );
 };
