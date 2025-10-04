@@ -2,8 +2,8 @@ import { db } from '../db/database.js';
 import { Insertable, Selectable } from 'kysely';
 import { DB } from '../db/types.js';
 
-type Course = Selectable<DB['course']>;
-type NewCourse = Insertable<DB['course']>;
+export type Course = Selectable<DB['course']>;
+export type NewCourse = Insertable<DB['course']>;
 
 export async function createCourse(course: NewCourse): Promise<Course | undefined> {
   return await db.insertInto('course')
