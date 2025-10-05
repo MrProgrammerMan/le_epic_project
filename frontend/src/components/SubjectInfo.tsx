@@ -1,4 +1,5 @@
 import React from 'react';
+import { CourseInfo } from '../typescript/courseInfo';
 
 const SubjectInfo: React.FC = () => {
   return (
@@ -7,31 +8,15 @@ const SubjectInfo: React.FC = () => {
         <h1 className="text-lg font-semibold">TOTAL SUBJECTS</h1>
         <div className="text-sm text-gray-500">Total subjects: ? results</div>
       </div>
-      <div className="mb-5">
+      {CourseInfo.map((course) => (
+      <div className="mb-5" key={course.code}>
           <div className="border border-gray-500 rounded p-5">
-            <h3 className="text-lg font-semibold">Discrete Mathematics</h3>
-            <p>DAPE1300</p>
+            <h3 className="text-lg font-semibold">{course.name}</h3>
+            <p>{course.code}</p>
           </div>
       </div>
-      <div className="mb-5">
-        <div className="border border-gray-500 rounded p-5">
-          <h3 className="text-lg font-semibold">Programming</h3>
-          <p>DAPE1400</p>
-          </div>
-      </div>
-      <div className="mb-5">
-        <div className="border border-gray-500 rounded p-5">
-          <h3 className="text-lg font-semibold">Technology and Society for Programmers</h3>
-          <p>DATA1100</p>
-          </div>
-      </div>
-      <div className="mb-5">
-        <div className="border border-gray-500 rounded p-5">
-          <h3 className="text-lg font-semibold">Inclusive Web Design</h3>
-          <p>DATA1200</p>
-          </div>
-      </div>
-      </div>
+      ))}
+    </div>
   );
 };
 
