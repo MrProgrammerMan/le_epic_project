@@ -8,6 +8,7 @@ const SubjectInfo: React.FC = () => {
         <h1 className="text-lg font-semibold">TOTAL SUBJECTS</h1>
         <div className="text-sm text-gray-500">Total subjects: ? results</div>
       </div>
+      <div className="max-h-[450px] overflow-y-auto">
       {CourseInfo.map((course) => (
       <div className="mb-5" key={course.code}>
           <div className="border border-gray-500 rounded p-5">
@@ -16,6 +17,7 @@ const SubjectInfo: React.FC = () => {
           </div>
       </div>
       ))}
+      </div>
     </div>
   );
 };
