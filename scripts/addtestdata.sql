@@ -1,6 +1,6 @@
 -- test data legg inn
 -- @block
-INSERT INTO course (name, code, description, cover_img, id) VALUES
+INSERT INTO course (name, code, description, id) VALUES
 (
     'Introduksjon til båt fargelegging',
     'VANN1234',
