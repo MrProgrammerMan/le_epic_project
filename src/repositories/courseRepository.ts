@@ -24,3 +24,9 @@ export async function findAllCourses(): Promise<Course[]> {
     .selectAll()
     .execute();
 }
+
+export async function deleteCourseByCode(code: string): Promise<Course | undefined> {
+  return await db.deleteFrom('course')
+      .where('code', '=', code)
+      .executeTakeFirst();
+}

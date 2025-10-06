@@ -10,9 +10,9 @@ const courseRoutes: FastifyPluginAsync = async (fastify, _options) => {
         return reply.code(201).send(created);
     });
 
-    fastify.get("/course/:fagkode", { schema: { params: courseGetSchema } }, async (request, reply) => {
-        const parameters = request.params as { fagkode: string }
-        const kode = parameters.fagkode;
+    fastify.get("/course/:code", { schema: { params: courseGetSchema } }, async (request, reply) => {
+        const parameters = request.params as { code: string }
+        const kode = parameters.code;
         reply.send(await findCourseByCode(kode));
     });
 
