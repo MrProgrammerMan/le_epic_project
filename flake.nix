@@ -39,6 +39,9 @@
           packages = with pkgs; [
             nodejs_24
           ];
+          shellHook = ''
+            export DATABASE_URL="postgres://postuser:postpass@localhost:5432/db"
+          '';
         };
       };
     };
