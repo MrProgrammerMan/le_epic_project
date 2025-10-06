@@ -28,5 +28,15 @@ export async function findAllCourses(): Promise<Course[]> {
 export async function deleteCourseByCode(code: string): Promise<Course | undefined> {
   return await db.deleteFrom('course')
       .where('code', '=', code)
+      .returningAll()
       .executeTakeFirst();
+}
+
+export async function updateCourse(course: Course): Promise<Course | undefined> {
+  return await db
+        .updateTable('course')
+        .set(course)
+        .where('code', '=', course.code)
+        .returningAll()
+        .executeTakeFirst();
 }
