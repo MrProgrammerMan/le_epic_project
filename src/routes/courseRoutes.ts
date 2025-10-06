@@ -1,5 +1,5 @@
 import type { FastifyPluginAsync } from "fastify";
-import { NewCourse, findAllCourses, findCourseByCode, createCourse } from "../repositories/courseRepository.js";
+import { NewCourse, findAllCourses, findCourseByCode, createCourse, deleteCourseByCode } from "../repositories/courseRepository.js";
 import { newCoursePostSchema, courseGetSchema } from "./schema.js";
 
 
@@ -19,6 +19,12 @@ const courseRoutes: FastifyPluginAsync = async (fastify, _options) => {
     fastify.get("/courses", async (request, reply) => {
         reply.send(await findAllCourses());
     });
+
+    fastify.delete("/course",{schema: {body: courseGetSchema}},
+        async function (request, reply) {
+            const coursefrombody = request.body as { code: string }
+            reply.send(await deleteCourseByCode(coursefrombody.code));
+    }); 
 }
 
 export default courseRoutes;
